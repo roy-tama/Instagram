@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
@@ -26,6 +27,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // currentUserがnilならログインしていない
+        if Auth.auth().currentUser == nil {
+            // ログインしていない時の処理
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
+    }
     //タブバーのアイコンがタップされた時に呼ばれるDelegateメソッドを処理する
     // true: タブ切替許可
     // false: タブ切替不許可
@@ -42,6 +53,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
     }
 
+    
     /*
     // MARK: - Navigation
 
