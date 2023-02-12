@@ -64,22 +64,17 @@ class PostTableViewCell: UITableViewCell {
         }
                 
         // コメントの表示
-        print("DEBUG_PRINT: コメント表示＝\(postData.comment)")
         
         var comments: String = ""
-        var commentators: String = ""
         var commentExist: Bool = false
         
         if postData.comment.count > 0 {
             commentExist = true
         }
         for (index,comment) in postData.comment.enumerated() {
-            print("DEBUG_PRINT: コメント内容＝\(comment)")
             comments += "\(comment)"
-            print("DEBUG_PRINT: コメントテーターカウント＝\(postData.commentatorName.count)")
 
             if postData.commentatorName.count > index {
-                print("DEBUG_PRINT: コメンテーター＝\(postData.commentatorName[index])")
                 let commentator: String = postData.commentatorName[index]
                 comments += " by \(commentator)\n"
             }
@@ -89,8 +84,6 @@ class PostTableViewCell: UITableViewCell {
         } else {
             self.commentLabel.text = ""
         }
-            
-        
     }
     
 }

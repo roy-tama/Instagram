@@ -40,8 +40,6 @@ class CommentViewController: UIViewController {
         var commentValue: FieldValue
         var commentatorNameValue: FieldValue
         
-        print("DEBUG_PRINT: 登録コメント数：\(postData.comment.count)")
-
         // バリデーション
         if ((commentTextField.text?.isEmpty) == nil) {
             SVProgressHUD.showError(withStatus: "コメントを入力してください")
@@ -55,8 +53,6 @@ class CommentViewController: UIViewController {
         }
 
         commentValue = FieldValue.arrayUnion([comment])
-
-        print("DEBUG_PRINT: 登録コメント：\(commentValue)")
         
         // コメンテーターの表示名を取得
         let user = Auth.auth().currentUser
@@ -67,7 +63,6 @@ class CommentViewController: UIViewController {
             }
         }
         commentatorNameValue = FieldValue.arrayUnion([commentatorName])
-        print("DEBUG_PRINT: 登録コメンテーター：\(commentatorNameValue)")
 
         // likesに更新データを書き込む
         let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
